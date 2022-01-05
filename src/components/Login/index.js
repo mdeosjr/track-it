@@ -1,18 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import Input from '../Input';
+import { Form, StyledLink } from '../Form.js';
+import logo from '../../assets/logo.svg';
 
-function Login() {
+function LoginPagina() {
   return (
-      <Login>
-          <form>
-              <Input type="email" placeholder="email"></Input>
-              <Input type="password" placeholder="senha"></Input>
-              <button type="submit">Entrar</button>
-              <Link to="/cadastro">Não tem uma conta? Cadastre-se!</Link>
-          </form>
-      </Login>
+    <Form>
+        <img src={logo} alt="logo"></img>
+        <form>
+            <Input type="email" placeholder="email"></Input>
+            <Input type="password" placeholder="senha"></Input>
+            <button type="submit">Entrar</button>
+        </form>
+        <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>
+    </Form>
   );
 }
 
-export default Login;
+export default LoginPagina;                                                                       

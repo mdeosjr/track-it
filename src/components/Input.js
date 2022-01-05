@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 const Input = styled.input`
+    all: unset;
     width: 303px;
     height: 45px;
 
@@ -14,6 +15,7 @@ const Input = styled.input`
     font-weight: normal;
     font-size: 19.976px;
     line-height: 25px;
+    padding-left: 11px;
   
     color: #DBDBDB;
     }
