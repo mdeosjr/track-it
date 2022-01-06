@@ -14,6 +14,13 @@ function LoginPagina() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  function erroLogin(erro) {
+    alert(erro.response.data.message);
+    setBotao(true);
+    setEmail('');
+    setPassword('');
+  }
+
   function logar(e) {
     e.preventDefault();
 
@@ -24,8 +31,8 @@ function LoginPagina() {
 
     setBotao(false);
 
-    promessa.then(resposta => navigate("/hoje"))
-    promessa.catch(erro => (console.log(erro.response), setBotao(true)))
+    promessa.then(() => navigate("/hoje"))
+    promessa.catch(erro => erroLogin(erro))
   }
 
   return (

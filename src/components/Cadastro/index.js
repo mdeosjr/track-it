@@ -15,10 +15,13 @@ function CadastroPagina() {
       image: '',
       password: ''
   })
-
   const [botao, setBotao] = useState(true);
-
   const navigate = useNavigate();
+
+  function erroCadastro(erro) {
+    alert(erro.response.data.message);
+    setBotao(true);
+  }
 
   function cadastrar(e) {
     e.preventDefault();
@@ -31,7 +34,7 @@ function CadastroPagina() {
     setBotao(false);
     
     promessa.then(resposta => navigate("/"))
-    promessa.catch(erro => (alert(erro.response.data.message), setBotao(true)));
+    promessa.catch(erro => erroCadastro(erro));
   }
 
   function modificarInput(e) {

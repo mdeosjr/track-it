@@ -23,10 +23,7 @@ const Form = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13.976px;
+    font: normal 13.976px 'Lexend Deca';
     line-height: 17px;                                                          
     text-align: center;
     text-decoration-line: underline;

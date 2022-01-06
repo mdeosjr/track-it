@@ -11,10 +11,7 @@ const Input = styled.input`
     border-radius: 5px;
 
     &::placeholder {
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: normal;
-        font-size: 19.976px;
+        font: normal 19.976px 'Lexend Deca';
         line-height: 25px;
     
         color: #DBDBDB;

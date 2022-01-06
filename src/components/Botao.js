@@ -8,10 +8,7 @@ const Botao = styled.button`
     background: #52B6FF;
     border-radius: 4.63636px;
 
-    font-family: 'Lexend Deca';
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20.976px;
+    font: normal 20.976px 'Lexend Deca';
     line-height: 26px;
     text-align: center;
 

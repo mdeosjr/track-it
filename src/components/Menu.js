@@ -20,8 +20,7 @@ function Menu() {
                         textColor: '#FFFFFF',
                         trailColor: '#52B6FF',
                         pathColor: '#FFFFFF'
-                    }
-                    )}
+                    })}
                 />
             </Circulo>
             <StyledLink to="/historico">Histórico</StyledLink>
@@ -46,10 +45,7 @@ const Container = styled.div`
 `;
 
 const StyledLink = styled(Link)`
-    font-family: Lexend Deca;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 17.976px;
+    font: normal 17.976px 'Lexend Deca';
     line-height: 22px;
     text-align: center;
 
