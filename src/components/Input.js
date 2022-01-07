@@ -10,6 +10,8 @@ const Input = styled.input`
     border: 1px solid #D5D5D5;
     border-radius: 5px;
 
+    color: #666666;
+
     &::placeholder {
         font: normal 19.976px 'Lexend Deca';
         line-height: 25px;

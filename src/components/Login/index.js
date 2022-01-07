@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Input from '../Input';
 import Botao from '../Botao';
 import axios from 'axios';
+import ContextoUsuario from '../../contexts/ContextoUsuario';
+import ContextoToken from '../../contexts/ContextoToken';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import { Form, StyledLink } from '../Form.js';
@@ -12,6 +14,8 @@ function LoginPagina() {
   const [botao, setBotao] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setUsuario } = useContext(ContextoUsuario);
+  const { setToken } = useContext(ContextoToken);
   const navigate = useNavigate();
 
   function erroLogin(erro) {
@@ -19,6 +23,12 @@ function LoginPagina() {
     setBotao(true);
     setEmail('');
     setPassword('');
+  }
+
+  function sucessoLogin(resposta) {
+    navigate("/hoje");
+    setUsuario(resposta.data)
+    setToken(resposta.data.token)
   }
 
   function logar(e) {
@@ -31,7 +41,7 @@ function LoginPagina() {
 
     setBotao(false);
 
-    promessa.then(() => navigate("/hoje"))
+    promessa.then(resposta => sucessoLogin(resposta))
     promessa.catch(erro => erroLogin(erro))
   }
 

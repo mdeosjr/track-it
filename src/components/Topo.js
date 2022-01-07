@@ -1,11 +1,15 @@
 import styled from 'styled-components';
 import logomini from '../assets/logomini.svg'
+import { useContext } from 'react';
+import ContextoUsuario from '../contexts/ContextoUsuario'
 
 function Topo() {
+    const { usuario } = useContext(ContextoUsuario)
+
     return (
         <Container>
             <img src={logomini} alt="logo"></img>
-            <img src={logomini} alt="logo"></img>
+            <ImagemUsuario src={usuario.image} alt="imagem do usuário"></ImagemUsuario>
         </Container>
     )    
 }
@@ -25,11 +29,13 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+`;
 
-    img {
-        width: 97px;
-        height: 49px;
-    }
-`
+const ImagemUsuario = styled.img`
+    width: 51px;
+    height: 51px;
+    
+    border-radius: 98.5px;
+`;
 
 export default Topo;

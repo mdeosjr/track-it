@@ -6,7 +6,7 @@ const TextoGeral = styled.h2`
 
     color: #666666;
 
-    margin-top: 17px;
+    margin-top: 22px;
 `
 
 export default TextoGeral;
