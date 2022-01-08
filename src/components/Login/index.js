@@ -73,7 +73,8 @@ function LoginPagina() {
                   type="ThreeDots" 
                   color="#FFFFFF" 
                   height={50} width={50} 
-                />}
+                />
+              }
             </Botao>
         </form>
         <StyledLink to="/cadastro">Não tem uma conta? Cadastre-se!</StyledLink>

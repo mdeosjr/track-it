@@ -8,7 +8,7 @@ import ContextoToken from '../../contexts/ContextoToken';
 import dayjs from 'dayjs'
 
 function HojePagina() {
-  const [habitos, setHabitos] = useState(null);
+  const [habitos, setHabitos] = useState([]);
   const { token } = useContext(ContextoToken)
 
   useEffect(() => {
@@ -22,10 +22,6 @@ function HojePagina() {
     promessa.then(resposta => setHabitos(resposta.data))
     promessa.catch(erro => console.log(erro.response)) 
   }, [token]);
-
-  if (habitos === null) {
-    return <h1>Carregando...</h1>
-  }
 
   return (
     <Container>
