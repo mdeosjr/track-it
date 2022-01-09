@@ -5,7 +5,7 @@ import CadastroPagina from "./components/Cadastro"
 import HojePagina from "./components/Hoje"
 import HistoricoPagina from "./components/Historico"
 import HabitosPagina from "./components/Habitos"
-import ContextoUsuario from "./contexts/ContextoUsuario";
+import ContextoUsuario from "./contexts/ContextoUsuario"
 import ContextoToken from './contexts/ContextoToken'
 import ContextoPorcentagem from './contexts/ContextoPorcentagem'
 

@@ -12,6 +12,7 @@ import logo from '../../assets/logo.svg';
 
 function LoginPagina() {
   const [botao, setBotao] = useState(true);
+  const [input, setInput] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { setUsuario } = useContext(ContextoUsuario);
@@ -21,6 +22,7 @@ function LoginPagina() {
   function erroLogin(erro) {
     alert(erro.response.data.message);
     setBotao(true);
+    setInput(true);
     setEmail('');
     setPassword('');
   }
@@ -40,6 +42,7 @@ function LoginPagina() {
     })
 
     setBotao(false);
+    setInput(false);
 
     promessa.then(resposta => sucessoLogin(resposta))
     promessa.catch(erro => erroLogin(erro))
@@ -49,7 +52,8 @@ function LoginPagina() {
     <Form>
         <img src={logo} alt="logo"></img>
         <form onSubmit={logar}>
-            <Input 
+            <Input
+              ativo={input} 
               type="email" 
               placeholder="email"
               name="email"
@@ -57,6 +61,7 @@ function LoginPagina() {
               onChange={(e) => setEmail(e.target.value)}
             />
             <Input 
+              ativo={input}
               type="password" 
               placeholder="senha"
               name="password"

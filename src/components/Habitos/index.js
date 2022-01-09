@@ -35,11 +35,12 @@ function HabitosPagina() {
     const [adicaoHabito, setAdicaoHabito] = useState(false);
     const [habito, setHabito] = useState('');
     const [listaHabitos, setListaHabitos] = useState([]);
-    const [botao, setBotao] = useState(true)
+    const [botao, setBotao] = useState(true);
+    const [input, setInput] = useState(true);
     const { token } = useContext(ContextoToken);
     const { porcentagem } = useContext(ContextoPorcentagem)
 
-    useEffect(() => {renderizarHabitos()}, [token])
+    useEffect(() => renderizarHabitos())
 
     function renderizarHabitos() {
         const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', 
@@ -61,6 +62,24 @@ function HabitosPagina() {
             objetoDias[diaId].selecionado = false
         }
         setDias(objetoDias);
+    }
+
+    function resetarDias() {
+        setDias([
+            {dia:'D', diaId:0, selecionado: false},
+            {dia:'S', diaId:1, selecionado: false},
+            {dia:'T', diaId:2, selecionado: false},
+            {dia:'Q', diaId:3, selecionado: false},
+            {dia:'Q', diaId:4, selecionado: false},
+            {dia:'S', diaId:5, selecionado: false},
+            {dia:'S', diaId:6, selecionado: false}
+        ])
+    }
+
+    function cancelar() {
+        setHabito('');
+        setAdicaoHabito(false);
+        resetarDias();
     }
 
     function salvar() {
@@ -85,16 +104,9 @@ function HabitosPagina() {
             renderizarHabitos(); 
             setAdicaoHabito(false);
             setHabito('');
-            setDias([
-                {dia:'D', diaId:0, selecionado: false},
-                {dia:'S', diaId:1, selecionado: false},
-                {dia:'T', diaId:2, selecionado: false},
-                {dia:'Q', diaId:3, selecionado: false},
-                {dia:'Q', diaId:4, selecionado: false},
-                {dia:'S', diaId:5, selecionado: false},
-                {dia:'S', diaId:6, selecionado: false}
-            ]);
+            resetarDias();
             setBotao(true); 
+            setInput(false);
         })
     }
 
@@ -121,6 +133,7 @@ function HabitosPagina() {
                 {adicaoHabito && 
                 <Habito>
                     <Input 
+                        ativo={input}
                         type="text" 
                         placeholder="nome do hábito"
                         name="habito"
@@ -139,13 +152,13 @@ function HabitosPagina() {
                         }
                     </Semana>
                     <Botoes>
-                        <Cancelar onClick={() => setHabito(false)}>Cancelar</Cancelar>
-                        <Salvar onClick={salvar}> 
+                        <Cancelar onClick={() => cancelar()}>Cancelar</Cancelar>
+                        <Salvar onClick={() => salvar()}> 
                             {botao ? "Salvar" :
                                 <Loader 
                                 type="ThreeDots" 
                                 color="#FFFFFF" 
-                                height={35} width={35} 
+                                height={30} width={30} 
                                 />}
                         </Salvar>  
                     </Botoes>

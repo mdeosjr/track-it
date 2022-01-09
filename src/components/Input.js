@@ -6,11 +6,13 @@ const Input = styled.input`
     height: 45px;
     padding-left: 11px;
 
-    background: #FFFFFF;
+    background: ${props => props.ativo ? '#FFFFFF' : '#F2F2F2'};
     border: 1px solid #D5D5D5;
     border-radius: 5px;
 
-    color: #666666;
+    color: ${props => props.ativo ? '#DBDBDB' : '#AFAFAF'};
+
+    ${props => !props.ativo && "pointer-events: none;"}
 
     &::placeholder {
         font: normal 19.976px 'Lexend Deca';

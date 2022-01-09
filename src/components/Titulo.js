@@ -13,7 +13,7 @@ const Subtitulo = styled.h2`
     font: normal 17.796px 'Lexend Deca';
     line-height: 22px;
 
-    color: #BABABA;
+    color: ${props => props.porcentagem === 0 ? '#BABABA' : '#8FC549'}
 `
 
 export {

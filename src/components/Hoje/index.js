@@ -22,14 +22,13 @@ function HojePagina() {
           Authorization: `Bearer ${token}`
         }
       });
-    
+      
     promessa.then(resposta => {setHabitosHoje(resposta.data)})
-    promessa.catch(erro => console.log(erro.response))
   }
 
   setPorcentagem(((habitosHoje.filter(habito => habito.done).length)/(habitosHoje.length))*100) 
 
-  useEffect(() => renderizarHoje(), [token]);
+  useEffect(() => renderizarHoje());
 
   function clicarHabito(done, id) {
     {!done ? 
@@ -54,28 +53,34 @@ function HojePagina() {
   return (
     <Container>
         <Topo/>
-        <Titulo>
-          {dayjs().format('dddd, DD/MM')}
-        </Titulo>
-        <Subtitulo>
-          Nenhum hábito concluído ainda
-        </Subtitulo>
-        {habitosHoje.map(habito => 
-          <Habito key={habito.id}>
-            <div className="infoHabitoHoje">
-              <div className="texto">
-                <h1>{habito.name}</h1>
-                <h2>Sequência atual: {habito.currentSequence} {habito.currentSequence === 1 ? 'dia' : 'dias'}</h2>
-                <h2>Seu recorde: {habito.highestSequence} {habito.highestSequence === 1 ? 'dia' : 'dias'}</h2>
+        {habitosHoje.length === 0 ? 
+        <Titulo>Nenhum hábito para hoje</Titulo> 
+        :
+        <>
+          <Titulo>
+            {dayjs().format('dddd, DD/MM')}
+          </Titulo>
+          <Subtitulo porcentagem={porcentagem}>
+            {porcentagem === 0 ? 'Nenhum hábito concluído ainda' : `${porcentagem}% dos hábitos concluídos`}
+          </Subtitulo>
+          {habitosHoje.map(habito => 
+            <Habito key={habito.id}>
+              <div className="infoHabitoHoje">
+                <div className="texto">
+                  <h1>{habito.name}</h1>
+                  <h2>Sequência atual: {habito.currentSequence} {habito.currentSequence === 1 ? 'dia' : 'dias'}</h2>
+                  <h2>Seu recorde: {habito.highestSequence} {habito.highestSequence === 1 ? 'dia' : 'dias'}</h2>
+                </div>
+                <Check 
+                  feito={habito.done}
+                  onClick={() => clicarHabito(habito.done, habito.id)}>
+                  <img src={check} alt="botao check"></img>
+                </Check>
               </div>
-              <Check 
-                feito={habito.done}
-                onClick={() => clicarHabito(habito.done, habito.id)}>
-                <img src={check} alt="botao check"></img>
-              </Check>
-            </div>
-          </Habito>
-        )}
+            </Habito>
+          )}
+        </>
+        } 
         <Menu porcentagem={porcentagem}/>
     </Container>
   )

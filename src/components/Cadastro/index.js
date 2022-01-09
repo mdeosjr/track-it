@@ -16,11 +16,13 @@ function CadastroPagina() {
       password: ''
   })
   const [botao, setBotao] = useState(true);
+  const [input, setInput] = useState(true);
   const navigate = useNavigate();
 
   function erroCadastro(erro) {
     alert(erro.response.data.message);
     setBotao(true);
+    setInput(true);
   }
 
   function cadastrar(e) {
@@ -32,6 +34,7 @@ function CadastroPagina() {
       )
     
     setBotao(false);
+    setInput(false);
     
     promessa.then(() => navigate("/"))
     promessa.catch(erro => erroCadastro(erro));
@@ -45,7 +48,8 @@ function CadastroPagina() {
     <Form>
         <img src={logo} alt="logo"></img>
         <form onSubmit={cadastrar}>
-            <Input 
+            <Input
+              ativo={input} 
               type="email" 
               placeholder="email" 
               name="email"
@@ -53,6 +57,7 @@ function CadastroPagina() {
               value={dadosUsuario.email}
             />
             <Input 
+              ativo={input}
               type="password" 
               placeholder="senha" 
               name="password"
@@ -60,6 +65,7 @@ function CadastroPagina() {
               value={dadosUsuario.password}
             />
             <Input 
+              ativo={input}
               type="text" 
               placeholder="nome" 
               name="name"
@@ -67,6 +73,7 @@ function CadastroPagina() {
               value={dadosUsuario.name}
             />
             <Input 
+              ativo={input}
               type="text" 
               placeholder="foto" 
               name="image"
