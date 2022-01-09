@@ -7,6 +7,16 @@ const Titulo = styled.h1`
     color: #126BA5;
 
     padding-top: 98px;
+`;
+
+const Subtitulo = styled.h2`
+    font: normal 17.796px 'Lexend Deca';
+    line-height: 22px;
+
+    color: #BABABA;
 `
 
-export default Titulo;
+export {
+    Titulo,
+    Subtitulo
+}

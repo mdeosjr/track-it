@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import ContextoUsuario from '../contexts/ContextoUsuario'
 
 function Topo() {
-    const { usuario } = useContext(ContextoUsuario)
+    const { usuario } = useContext(ContextoUsuario);
 
     return (
         <Container>

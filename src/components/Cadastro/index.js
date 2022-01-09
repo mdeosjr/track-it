@@ -33,7 +33,7 @@ function CadastroPagina() {
     
     setBotao(false);
     
-    promessa.then(resposta => navigate("/"))
+    promessa.then(() => navigate("/"))
     promessa.catch(erro => erroCadastro(erro));
   }
 

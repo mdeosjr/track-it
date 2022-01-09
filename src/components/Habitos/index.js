@@ -3,11 +3,12 @@ import axios from 'axios';
 import Loader from "react-loader-spinner";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import ContextoToken from '../../contexts/ContextoToken';
+import ContextoPorcentagem from '../../contexts/ContextoPorcentagem'
 import botaoDeletar from '../../assets/delete.svg';
 import Topo from '../Topo';
 import Menu from '../Menu';
-import Titulo from '../Titulo'
-import Habito from '../Habito';
+import { Titulo } from '../Titulo'
+import { Habito } from '../Habito';
 import Input from '../Input';
 import TextoGeral from '../TextoGeral'
 import Container from '../Container';
@@ -36,6 +37,7 @@ function HabitosPagina() {
     const [listaHabitos, setListaHabitos] = useState([]);
     const [botao, setBotao] = useState(true)
     const { token } = useContext(ContextoToken);
+    const { porcentagem } = useContext(ContextoPorcentagem)
 
     useEffect(() => {renderizarHabitos()}, [token])
 
@@ -155,9 +157,9 @@ function HabitosPagina() {
                     : 
                     listaHabitos.map(habito => 
                         <Habito>
-                            <div className='lixo'>
+                            <div className="topoHabito">
                                 <h1>{habito.name}</h1>
-                                <img src={botaoDeletar} alt="botao deletar" onClick={() => deletar(habito.id)}></img>
+                                <img className="botaoDeletar" src={botaoDeletar} alt="botao deletar" onClick={() => deletar(habito.id)}></img>
                             </div>
                             <Semana>
                                 {dias.map(dia => 
@@ -173,7 +175,7 @@ function HabitosPagina() {
                     )   
                 }
             </div>
-            <Menu/>
+            <Menu porcentagem={porcentagem}/>
         </Container>  
     );
 }

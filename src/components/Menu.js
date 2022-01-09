@@ -3,15 +3,13 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
 
-function Menu() {
-    const percentage = 66;
-
+function Menu({porcentagem}) {
     return (
         <Container>
             <StyledLink to="/habitos">Hábitos</StyledLink>
             <Circulo to="/hoje">
                 <CircularProgressbar 
-                    value={percentage} 
+                    value={porcentagem} 
                     text={"Hoje"} 
                     background={true}
                     backgroundPadding={6}
