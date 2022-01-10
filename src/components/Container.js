@@ -5,6 +5,13 @@ const Container = styled.div`
     width: 375px;
     height: 100vh;
     padding: 0 15px;
+
+    .loading {
+        font-size: 20px;
+        color: #666666;
+        margin-top: 50px;
+        text-align: center;
+    }
 `
 
 export default Container;

@@ -1,9 +1,29 @@
 import styled from 'styled-components';
+import axios from 'axios';
+import { useContext, useEffect } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { Link } from 'react-router-dom';
+import ContextoPorcentagem from '../contexts/ContextoPorcentagem';
+import ContextoToken from '../contexts/ContextoToken';
 
-function Menu({porcentagem}) {
+function Menu() {
+    const { porcentagem, setPorcentagemLocal } = useContext(ContextoPorcentagem);
+    const { token } = useContext(ContextoToken);
+    
+    useEffect(() => {
+        const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', 
+        {
+            headers: {
+            Authorization: `Bearer ${token}`
+            }
+        });
+        
+        promessa.then(resposta => {
+            setPorcentagemLocal(((resposta.data.filter(habito => habito.done).length)/(resposta.data.length))*100)}
+            )
+    }, [porcentagem])
+
     return (
         <BarraMenu>
             <StyledLink to="/habitos">Hábitos</StyledLink>

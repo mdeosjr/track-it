@@ -23,6 +23,7 @@ import {
 } from './style';
 
 function HabitosPagina() {
+    const { setPorcentagemLocal } = useContext(ContextoPorcentagem)
     const [dias, setDias] = useState([
         {dia:'D', diaId:0, selecionado: false},
         {dia:'S', diaId:1, selecionado: false},
@@ -33,6 +34,7 @@ function HabitosPagina() {
         {dia:'S', diaId:6, selecionado: false}
     ]);
     const [adicaoHabito, setAdicaoHabito] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [habito, setHabito] = useState('');
     const [listaHabitos, setListaHabitos] = useState([]);
     const [botao, setBotao] = useState(true);
@@ -49,7 +51,10 @@ function HabitosPagina() {
                 Authorization: `Bearer ${token}`
             }
         });
-        promessa.then(resposta => setListaHabitos(resposta.data))
+        promessa.then(resposta => {
+            setListaHabitos(resposta.data); 
+            setIsLoading(false)
+        })
         promessa.catch(erro => console.log(erro.response)) 
     }
 
@@ -108,6 +113,7 @@ function HabitosPagina() {
             resetarDias();
             setBotao(true); 
             setInput(true);
+            setPorcentagemLocal(0)
         })
     }
 
@@ -119,7 +125,7 @@ function HabitosPagina() {
                     {Authorization: `Bearer ${token}`}
                 }
             )
-            .then(() => {renderizarHabitos()})
+            .then(() => {renderizarHabitos(); setPorcentagemLocal(0)})
         }
     }
 
@@ -164,7 +170,8 @@ function HabitosPagina() {
                         </Salvar>  
                     </Botoes>
                 </Habito>}
-                {listaHabitos.length === 0 ? 
+                {isLoading ? <h1 className="loading">Carregando...</h1> : 
+                    (listaHabitos.length === 0 ? 
                     <TextoGeral>
                         Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!
                     </TextoGeral> 
@@ -187,6 +194,7 @@ function HabitosPagina() {
                             </Semana>
                         </Habito>
                     )   
+                    )
                 }
             </div>
             <Menu porcentagem={porcentagem}/>
