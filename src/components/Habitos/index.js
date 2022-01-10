@@ -85,6 +85,7 @@ function HabitosPagina() {
     function salvar() {
         const diasSelecionados = [];
         setBotao(false);
+        setInput(false);
         dias.filter(dia => dia.selecionado)
             .map(dia => diasSelecionados.push(dia.diaId))
 
@@ -106,7 +107,7 @@ function HabitosPagina() {
             setHabito('');
             resetarDias();
             setBotao(true); 
-            setInput(false);
+            setInput(true);
         })
     }
 
@@ -169,7 +170,7 @@ function HabitosPagina() {
                     </TextoGeral> 
                     : 
                     listaHabitos.map(habito => 
-                        <Habito>
+                        <Habito key={habito.id}>
                             <div className="topoHabito">
                                 <h1>{habito.name}</h1>
                                 <img className="botaoDeletar" src={botaoDeletar} alt="botao deletar" onClick={() => deletar(habito.id)}></img>

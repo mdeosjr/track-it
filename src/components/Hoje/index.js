@@ -9,11 +9,12 @@ import ContextoToken from '../../contexts/ContextoToken';
 import ContextoPorcentagem from '../../contexts/ContextoPorcentagem';
 import check from '../../assets/check.svg'
 import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
 
 function HojePagina() {
   const [habitosHoje, setHabitosHoje] = useState([]);
   const { token } = useContext(ContextoToken);
-  const { porcentagem, setPorcentagem } = useContext(ContextoPorcentagem);
+  const { porcentagem, setPorcentagemLocal } = useContext(ContextoPorcentagem);
 
   function renderizarHoje() {
      const promessa = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today', 
@@ -26,12 +27,12 @@ function HojePagina() {
     promessa.then(resposta => {setHabitosHoje(resposta.data)})
   }
 
-  setPorcentagem(((habitosHoje.filter(habito => habito.done).length)/(habitosHoje.length))*100) 
+  setPorcentagemLocal(((habitosHoje.filter(habito => habito.done).length)/(habitosHoje.length))*100) 
 
-  useEffect(() => renderizarHoje());
+  useEffect(() => {renderizarHoje()});
 
   function clicarHabito(done, id) {
-    {!done ? 
+    !done ? 
       axios.post(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}/check`, {},
         {
           headers: {
@@ -47,7 +48,6 @@ function HojePagina() {
           }
         }
       ).then(() => {renderizarHoje()})
-    }
   }
 
   return (
@@ -58,18 +58,22 @@ function HojePagina() {
         :
         <>
           <Titulo>
-            {dayjs().format('dddd, DD/MM')}
+            {dayjs().locale('pt-br').format('dddd, DD/MM')}
           </Titulo>
           <Subtitulo porcentagem={porcentagem}>
-            {porcentagem === 0 ? 'Nenhum hábito concluído ainda' : `${porcentagem}% dos hábitos concluídos`}
+            {porcentagem === 0 ? 'Nenhum hábito concluído ainda' : `${Math.floor(porcentagem)}% dos hábitos concluídos`}
           </Subtitulo>
           {habitosHoje.map(habito => 
-            <Habito key={habito.id}>
+            <Habito 
+              key={habito.id} 
+              feito={habito.done}
+              recorde={habito.highestSequence === habito.currentSequence && habito.done && habito.highestSequence !== 0}
+            >
               <div className="infoHabitoHoje">
                 <div className="texto">
                   <h1>{habito.name}</h1>
-                  <h2>Sequência atual: {habito.currentSequence} {habito.currentSequence === 1 ? 'dia' : 'dias'}</h2>
-                  <h2>Seu recorde: {habito.highestSequence} {habito.highestSequence === 1 ? 'dia' : 'dias'}</h2>
+                  <h2>Sequência atual: <span>{habito.currentSequence} {habito.currentSequence === 1 ? 'dia' : 'dias'}</span></h2>
+                  <h2>Seu recorde: <span className="recorde">{habito.highestSequence} {habito.highestSequence === 1 ? 'dia' : 'dias'}</span></h2>
                 </div>
                 <Check 
                   feito={habito.done}

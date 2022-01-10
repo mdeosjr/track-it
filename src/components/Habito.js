@@ -50,6 +50,14 @@ const Habito = styled.div`
         flex-direction: column;
         gap: 6px;
     }
+
+    span {
+        color: ${props => props.feito ? '#8FC549' : '#666666'}
+    }
+
+    .recorde {
+        color: ${props => props.recorde ? '#8FC549' : '#666666'}
+    }
 `;
 
 const Check = styled.div`

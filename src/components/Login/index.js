@@ -15,8 +15,8 @@ function LoginPagina() {
   const [input, setInput] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { setUsuario } = useContext(ContextoUsuario);
-  const { setToken } = useContext(ContextoToken);
+  const { setImagemUsuarioLocal } = useContext(ContextoUsuario);
+  const { setTokenLocal } = useContext(ContextoToken);
   const navigate = useNavigate();
 
   function erroLogin(erro) {
@@ -29,8 +29,8 @@ function LoginPagina() {
 
   function sucessoLogin(resposta) {
     navigate("/hoje");
-    setUsuario(resposta.data)
-    setToken(resposta.data.token)
+    setImagemUsuarioLocal(resposta.data.image);
+    setTokenLocal(resposta.data.token);
   }
 
   function logar(e) {

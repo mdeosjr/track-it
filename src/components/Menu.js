@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Menu({porcentagem}) {
     return (
-        <Container>
+        <BarraMenu>
             <StyledLink to="/habitos">Hábitos</StyledLink>
             <Circulo to="/hoje">
                 <CircularProgressbar 
@@ -22,11 +22,11 @@ function Menu({porcentagem}) {
                 />
             </Circulo>
             <StyledLink to="/historico">Histórico</StyledLink>
-        </Container>
+        </BarraMenu>
     )    
 }
 
-const Container = styled.div`
+const BarraMenu = styled.div`
     width: 375px;
     height: 70px;
     padding: 0 18px;

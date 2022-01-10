@@ -4,17 +4,17 @@ import { useContext } from 'react';
 import ContextoUsuario from '../contexts/ContextoUsuario'
 
 function Topo() {
-    const { usuario } = useContext(ContextoUsuario);
-
+    const { imagemUsuario } = useContext(ContextoUsuario);
+    
     return (
-        <Container>
+        <BarraTopo>
             <img src={logomini} alt="logo"></img>
-            <ImagemUsuario src={usuario.image} alt="imagem do usuário"></ImagemUsuario>
-        </Container>
+            <ImagemUsuario src={imagemUsuario} alt="imagem do usuário"></ImagemUsuario>
+        </BarraTopo>
     )    
 }
 
-const Container = styled.div`
+const BarraTopo = styled.div`
     width: 375px;
     height: 70px;
     padding: 0 18px;
