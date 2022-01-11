@@ -52,9 +52,9 @@ const BarraMenu = styled.div`
     padding: 0 18px;
 
     position: fixed;
-    left: 0px;
-    bottom: 0px;
-
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
     background-color: #FFFFFF;
 
     display: flex;
