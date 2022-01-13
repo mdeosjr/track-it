@@ -1,6 +1,6 @@
 # TrackIt
 
-![image]![image](https://user-images.githubusercontent.com/92841240/149416761-178db9d4-d87c-48b7-bcb8-a58ab1f1eb19.png)
+![image](https://user-images.githubusercontent.com/92841240/149416761-178db9d4-d87c-48b7-bcb8-a58ab1f1eb19.png)
 
 ## Description
 An app, made with React and styled-components, thinking about add and organize your habits.
