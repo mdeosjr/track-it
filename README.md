@@ -23,7 +23,7 @@ So you have to:
 
 **Clone this repository**
 ```
-$ git clone https://github.com/mdeosjr/TrackIt
+$ git clone https://github.com/mdeosjr/trackt-it
 ```
 
 **Install dependencies**
